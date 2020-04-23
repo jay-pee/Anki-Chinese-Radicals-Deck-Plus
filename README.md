@@ -30,7 +30,7 @@ The Deck is automatically generated from a Python script. You can have a look at
 
 ## Example Card
 
-![example card](./media/example_card.png)
+![example card](./media/exampleCard.png)
 
 ## Get the most out of this deck
 
