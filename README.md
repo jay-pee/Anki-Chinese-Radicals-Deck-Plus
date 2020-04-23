@@ -1,10 +1,10 @@
 # Anki Chinese Radicals Deck+
 
-This is an Anki Flashcards Deck for learning the Chinese Radicals.
-The Radicals are the building block for the Chinese Characters, but can also be found in Japanese and Korean Language.
-The cool thing is, if you know the radicals you can guess the meaning and pronunciation of a character, though you have not learned it yet.
+This is an Anki flashcards deck for learning the Chinese Radicals.
+The Radicals are the building blocks for the Chinese Characters, but can also be found in Japanese and Korean Language.
+The cool thing is, if you have studied the radicals you can guess the meaning and pronunciation of a character, though you have not learned it yet.
 
-You can also build up mnemonics for Chinese words from it. For example for the character *好* which means *good*:
+You can also build up mnemonics for Chinese characters from it. For example for the character *好* which means *good*:
 
 ```
 女 + 子 = 好
@@ -15,7 +15,7 @@ woman + child = good, well (好 hǎo)
 "When a woman sticks to her child, it is good"
 ```
 
-The Deck is automatically generated from a Python script. You can have a look at the project at github.com/jay-pee/anki-chinese-radicals-deck-plus
+The Deck is automatically generated from a Python script. You can have a look at the project at [https://github.com/jay-pee/Anki-Chinese-Radicals-Deck-Plus](https://github.com/jay-pee/Anki-Chinese-Radicals-Deck-Plus)
 
 ## Fields
 
@@ -37,20 +37,20 @@ The Deck is automatically generated from a Python script. You can have a look at
 If you want to learn the radicals as fast as possible I would advice you to add some addition information to this cards.
 Here are some tips of what you can do:
 
-- Add images that you have looked up and you think it fits best to the character
-- Add an annotation that says something about the radical: Who does it look like? Does the ancient scripture reminds you on something? ...
+- Add images, that you have looked up and you think it fits best to the character to the deck.
+- Add an annotation that says something about the radical: How does it look like? Does the ancient scripture reminds you on something?
 - ...
 
 ## Build from Source
 
-1. Download the Repository
-2. install the requirements with `pip install -r requirments.txt`
-3. install the required node module with `npm install hanzi` (will soon be substituted)
-4. open a shell in the repository folder and run the main script (`python main.py`)
+1. Download the repository
+2. Install the requirements with `pip install -r requirments.txt`
+3. Install the required node module with `npm install hanzi` (will soon be substituted)
+4. Open a shell in the repository folder and run the main script (`python main.py`)
 
 ## Contribute
 
-If you have any suggestions how to improve the cards you are welcome to write an github issue at github.com/jay-pee/anki-chinese-radicals-deck-plus/issues or directly edit the scripts and make a pull request! Slight word of warning is that this project is still in the rapid prototyping phase. So don't expect to much from the code quality.
+If you have any suggestions how to improve the cards, you are welcome to write an [github issue](https://github.com/jay-pee/Anki-Chinese-Radicals-Deck-Plus/issue) or directly edit the scripts and make a pull request! Slight word of warning: This project is still in the rapid prototyping phase. So don't expect to much from the code quality. Also PRs for typos in the readme are welcome.
 
 ## Todos
 
