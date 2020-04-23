@@ -2,7 +2,7 @@
 
 This is an Anki flashcards deck for learning the Chinese Radicals.
 The Radicals are the building blocks for the Chinese Characters, but can also be found in Japanese and Korean Language.
-The cool thing is, if you have studied the radicals you can guess the meaning and pronunciation of a character, though you have not learned it yet.
+The cool thing is, if you have studied the radicals you can guess the meaning and pronunciation of a character, though you have not learned them yet.
 
 You can also build up mnemonics for Chinese characters from it. For example for the character *好* which means *good*:
 
@@ -32,7 +32,7 @@ The Deck is automatically generated from a Python script. You can have a look at
 
 ![example card](./media/example_card.png)
 
-## Get the most of this deck
+## Get the most out of this deck
 
 If you want to learn the radicals as fast as possible I would advice you to add some addition information to this cards.
 Here are some tips of what you can do:
