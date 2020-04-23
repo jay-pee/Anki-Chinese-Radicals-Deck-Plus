@@ -41,6 +41,10 @@ Here are some tips of what you can do:
 - Add an annotation that says something about the radical: How does it look like? Does the ancient scripture reminds you on something?
 - ...
 
+## Download the deck
+
+- You can download the deck from [here](https://github.com/jay-pee/Anki-Chinese-Radicals-Deck-Plus/blob/master/decks/Chinese-Radicals.apkg) at github.com or the shared deck from [here](https://ankiweb.net/shared/info/1732259414) at ankiweb.net
+
 ## Build from Source
 
 1. Download the repository

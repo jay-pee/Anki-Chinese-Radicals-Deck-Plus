@@ -9,7 +9,7 @@ def generateDeck():
     with open('./data/source_examples.csv', encoding='UTF8') as csvfile:
         reader = csv.reader(csvfile, delimiter='\t')
         for row in reader:
-            template_dict = dict.fromkeys(['Hanzi', 'Pinyin', 'English', 'Kangji Number', 'Alternatives', 'Sound', 'Ancient Character', 'Examples'])
+            template_dict = dict.fromkeys(['Hanzi', 'Pinyin', 'English', 'Kanji Number', 'Alternatives', 'Sound', 'Ancient Character', 'Examples'])
             for i, key in enumerate(template_dict.keys()):
                 template_dict[key] = row[i]
             result_dict.append(template_dict)
@@ -36,7 +36,7 @@ def generateDeck():
             'qfmt': "\n".join([
                     "<div class=container>",
                     "<div class=radical_number>Radical Number: {{Kanji Number}}</div>",
-                    "<div class=tags>Deck: {{Deck}} {{#Tags}} -- {{/Tags}}{{Tags}}</div>",
+                    "<div class=tags>{{Deck}} {{#Tags}} -- {{/Tags}}{{Tags}}</div>",
                     "</div>",
                     "<div class=chinese> {{Hanzi}}</div>",
                     "{{#Alternatives}}<div class=note>Alternatives:  <div class=chinese>{{Alternatives}}</div></div>{{/Alternatives}}",
@@ -98,7 +98,7 @@ def generateDeck():
 
     my_deck = genanki.Deck(
     1540858611,
-    'Chinese - Radicals')
+    'Chinese Radicals Deck+')
     for item in result_dict:
 
         my_note = genanki.Note(
@@ -113,7 +113,7 @@ def generateDeck():
     media_img_files = ["./media/img/"+i for i in os.listdir("./media/img")]
     media_audio_files = ["./media/audio/"+i for i in os.listdir("./media/audio")]
     my_package.media_files = media_img_files + media_audio_files
-    my_package.write_to_file('./decks/Chinese-Radicals.apkg')
+    my_package.write_to_file('./decks/Chinese-Radicals-Deck-Plus.apkg')
 
 if __name__ == "__main__":
     generateDeck()
