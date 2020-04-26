@@ -24,7 +24,7 @@ The Deck is automatically generated from a Python script. You can have a look at
 - English (Definition)
 - Kanji Radical Number
 - Alternatives (Radicals have sometimes multiple glyphs)
-- Sound (TTS Pronunciation)
+- Sound (Pronunciation from [audio-cmn](https://github.com/infinyte7/audio-cmn))
 - Ancient Character (Image from zdic.net)
 - Examples (Characters where the Radical is used)
 
@@ -62,6 +62,9 @@ If you have any suggestions how to improve the cards, you are welcome to write a
 - [x] Add Sound
 - [x] Get ancient scriptures
 - [x] Add colored Pinyin
+- [ ] Add High Quality Audio
+- [ ] Add a requirments.txt file
+- [ ] Improve audio quality with https://github.com/hugolpz/audio-cmn
 - [ ] Stroke order with https://github.com/chanind/hanzi-writer
 - [ ] Add Pictures maybe from https://writecantonese8.files.wordpress.com/2012/10/35670726-new-chinese-radical-full.pdf or google IMG
 - [ ] Add CI/CD Workflow
@@ -69,4 +72,5 @@ If you have any suggestions how to improve the cards, you are welcome to write a
 
 ## Acknowledgment
 
-Thank you to ccdb.hemiola.com (API for Chinese Characters), zdic.net (for the Ancient Scripture Images) HanziJS (for the Examples), translate.google.com (for the sounds) and the python pinyin module.
+Thank you to ccdb.hemiola.com (API for Chinese Characters), zdic.net (for the Ancient Scripture Images) HanziJS (for the Examples), 
+[audio-cmn](https://github.com/infinyte7/audio-cmn) and Chen Wang (for the high quality audio) and the python pinyin module.

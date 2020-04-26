@@ -1,7 +1,7 @@
+from makeAncientImgUrlList import *
 from downloadAncientImg import *
 from generateDeck import *
 from getRadicalsData import *
-from makeAncientImgUrlList import *
 
 import os
 

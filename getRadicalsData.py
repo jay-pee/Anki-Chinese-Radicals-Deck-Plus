@@ -24,22 +24,22 @@ def getRadicalsData():
         entry = same_radicals.pop(0)
         entry["alternativs"] = ", ".join([r["string"] for r in same_radicals])
         tone_number = re.search(r"\d", entry["altMandarin"]).group(0)
-        entry["altMandarin"] = f"<div class=tone{tone_number}>{pinyin.get(entry['string'])}</div>"
+        entry["MandarinStyled"] = f"<div class=tone{tone_number}>{pinyin.get(entry['string'])}</div>"
         entries.append(entry)
 
 
     char_with_img = [c[0] for c in os.listdir("./media/img")]
 
-    with open('source.csv', 'w', newline='', encoding="UTF8") as csvfile:
+    with open('./data/source.csv', 'w', newline='', encoding="UTF8") as csvfile:
         writer = csv.writer(csvfile, delimiter='\t',
                                 quotechar='|', quoting=csv.QUOTE_MINIMAL)
         for d in entries:
-            sound = f"[sound:{d['string']}_google_zh-cn.mp3]"
+            sound = f'[sound:cmn-{d["altMandarin"]}.mp3]'
             if d['string'] in char_with_img:
                 ancient_img = f"<img src=\"{d['string']}_img_ancient.svg\">"
             else:
                 ancient_img = ""
-            writer.writerow([d["string"], d["altMandarin"], d["altDefinition"], d["radical"], d["alternativs"], sound, ancient_img])
+            writer.writerow([d["string"], entry["MandarinStyled"], d["altMandarin"], d["altDefinition"], d["radical"], d["alternativs"], sound, ancient_img])
 
 if __name__ == "__main__":
     getRadicalsData()

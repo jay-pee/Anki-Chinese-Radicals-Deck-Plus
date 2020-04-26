@@ -9,7 +9,7 @@ def generateDeck():
     with open('./data/source_examples.csv', encoding='UTF8') as csvfile:
         reader = csv.reader(csvfile, delimiter='\t')
         for row in reader:
-            template_dict = dict.fromkeys(['Hanzi', 'Pinyin', 'English', 'Kanji Number', 'Alternatives', 'Sound', 'Ancient Character', 'Examples'])
+            template_dict = dict.fromkeys(['Hanzi', 'Pinyin', 'Pinyin RAW','English', 'Kanji Number', 'Alternatives', 'Sound', 'Ancient Character', 'Examples'])
             for i, key in enumerate(template_dict.keys()):
                 template_dict[key] = row[i]
             result_dict.append(template_dict)
