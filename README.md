@@ -62,7 +62,8 @@ If you have any suggestions how to improve the cards, you are welcome to write a
 - [x] Add Sound
 - [x] Get ancient scriptures
 - [x] Add colored Pinyin
-- [ ] Add High Quality Audio
+- [x] Add High Quality Audio
+- [ ] Get examples not from a JS script
 - [ ] Add a requirments.txt file
 - [ ] Improve audio quality with https://github.com/hugolpz/audio-cmn
 - [ ] Stroke order with https://github.com/chanind/hanzi-writer
