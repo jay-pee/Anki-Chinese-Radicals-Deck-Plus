@@ -39,7 +39,7 @@ def getRadicalsData():
                 ancient_img = f"<img src=\"{d['string']}_img_ancient.svg\">"
             else:
                 ancient_img = ""
-            writer.writerow([d["string"], entry["MandarinStyled"], d["altMandarin"], d["altDefinition"], d["radical"], d["alternativs"], sound, ancient_img])
+            writer.writerow([d["string"], d["MandarinStyled"], d["altMandarin"], d["altDefinition"], d["radical"], d["alternativs"], sound, ancient_img])
 
 if __name__ == "__main__":
     getRadicalsData()
