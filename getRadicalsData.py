@@ -6,7 +6,7 @@ if platform == "darwin":
     import certifi
 import pinyin
 
-def getRadicalsData(): 
+def getRadicalsData():
 
     fields = ["string", "altMandarin", "altDefinition"]
     url_radicals = f"http://ccdb.hemiola.com/characters/radicals?fields={','.join(fields)}"
@@ -41,5 +41,30 @@ def getRadicalsData():
                 ancient_img = ""
             writer.writerow([d["string"], d["MandarinStyled"], d["altMandarin"], d["altDefinition"], d["radical"], d["alternativs"], sound, ancient_img])
 
+def overwriteRadicalData():
+    with open('./data/correction.csv', 'r', newline='', encoding="UTF8") as csvfile:
+        reader = csv.reader(csvfile, delimiter='\t',
+                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        filter_list = list(reader)
+    with open('./data/source.csv', 'r', newline='', encoding="UTF8") as csvfile:
+        reader = csv.reader(csvfile, delimiter='\t',
+                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        radical_list = list(reader)
+        for f in filter_list:
+            item = next(filter(lambda x: x[0]==f[0], radical_list))
+            if len(f) != 8:
+                print("error!!!")
+                continue
+            radical_index = int(item[4])-1
+            for i, e in enumerate(f):
+                if e != '':
+                    radical_list[radical_index][i] = e
+    with open('./data/source.csv', 'w', newline='', encoding="UTF8") as csvfile:
+        writer = csv.writer(csvfile, delimiter='\t',
+                                quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        writer.writerows(radical_list)
+
+
 if __name__ == "__main__":
     getRadicalsData()
+    overwriteRadicalData()

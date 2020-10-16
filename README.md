@@ -69,6 +69,7 @@ If you have any suggestions how to improve the cards, you are welcome to write a
 - [ ] Add Pictures maybe from https://writecantonese8.files.wordpress.com/2012/10/35670726-new-chinese-radical-full.pdf or google IMG
 - [ ] Add CI/CD Workflow
 - [ ] Implement  Mnemonic like https://www.zerotohero.ca/#/en/zh/dictionary/hsk-cedict/%E5%80%91,men,0 
+- [ ] Implementing thematic radical map https://visual.ly/community/infographic/education/visual-celebration-chinese-radicals
 
 ## Acknowledgment
 

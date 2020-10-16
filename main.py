@@ -14,5 +14,6 @@ if __name__ == "__main__":
     if REDOWNLOAD_ANCIENT_IMG:
         downloadAncientImg()
     getRadicalsData()
+    overwriteRadicalData()
     os.system("node addExamplesToSource.js") #todo: replace this by python script
     generateDeck()
