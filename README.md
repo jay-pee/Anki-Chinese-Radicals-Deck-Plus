@@ -65,8 +65,9 @@ If you have any suggestions how to improve the cards, you are welcome to write a
 - [x] Get ancient scriptures
 - [x] Add colored Pinyin
 - [x] Add High Quality Audio
+- [x] Add a requirments.txt file
+- [ ] big fix wrong pinyin
 - [ ] Get examples not from a JS script
-- [ ] Add a requirments.txt file
 - [ ] Stroke order with https://github.com/chanind/hanzi-writer
 - [ ] Add Pictures maybe from https://writecantonese8.files.wordpress.com/2012/10/35670726-new-chinese-radical-full.pdf or google IMG
 - [ ] Add CI/CD Workflow
