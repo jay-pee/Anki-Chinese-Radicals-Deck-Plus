@@ -52,13 +52,13 @@ def overwriteRadicalData():
         radical_list = list(reader)
         for f in filter_list:
             item = next(filter(lambda x: x[0]==f[0], radical_list))
-            if len(f) != 8:
+            if len(f) != 9:
                 print("error!!!")
                 continue
             radical_index = int(item[4])-1
-            for i, e in enumerate(f):
-                if e != '':
-                    radical_list[radical_index][i] = e
+            for i in range(8):
+                if f[i] != '':
+                    radical_list[radical_index][i] = f[i]
     with open('./data/source.csv', 'w', newline='', encoding="UTF8") as csvfile:
         writer = csv.writer(csvfile, delimiter='\t',
                                 quotechar='|', quoting=csv.QUOTE_MINIMAL)

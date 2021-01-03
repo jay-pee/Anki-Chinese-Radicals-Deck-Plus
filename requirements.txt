@@ -1,0 +1,4 @@
+genanki
+bs4
+certifi
+pinyin

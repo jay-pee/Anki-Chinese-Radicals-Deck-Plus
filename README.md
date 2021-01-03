@@ -49,7 +49,9 @@ Here are some tips of what you can do:
 
 1. Download the repository
 2. Install the requirements with `pip install -r requirments.txt`
-3. Install the required node module with `npm install hanzi` (will soon be substituted)
+3. Install the required node module with
+   1. `npm install hanzi` (will soon be substituted)
+   2. `npm install fast-csv`
 4. Open a shell in the repository folder and run the main script (`python main.py`)
 
 ## Contribute
@@ -68,10 +70,10 @@ If you have any suggestions how to improve the cards, you are welcome to write a
 - [ ] Stroke order with https://github.com/chanind/hanzi-writer
 - [ ] Add Pictures maybe from https://writecantonese8.files.wordpress.com/2012/10/35670726-new-chinese-radical-full.pdf or google IMG
 - [ ] Add CI/CD Workflow
-- [ ] Implement  Mnemonic like https://www.zerotohero.ca/#/en/zh/dictionary/hsk-cedict/%E5%80%91,men,0 
+- [ ] Implement  Mnemonic like https://www.zerotohero.ca/#/en/zh/dictionary/hsk-cedict/%E5%80%91,men,0
 - [ ] Implementing thematic radical map https://visual.ly/community/infographic/education/visual-celebration-chinese-radicals
 
 ## Acknowledgment
 
-Thank you to ccdb.hemiola.com (API for Chinese Characters), zdic.net (for the Ancient Scripture Images) HanziJS (for the Examples), 
+Thank you to ccdb.hemiola.com (API for Chinese Characters), zdic.net (for the Ancient Scripture Images) HanziJS (for the Examples),
 [audio-cmn](https://github.com/infinyte7/audio-cmn) and Chen Wang (for the high quality audio) and the python pinyin module.

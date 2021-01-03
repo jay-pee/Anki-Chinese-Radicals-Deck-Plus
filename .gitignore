@@ -1,2 +1,7 @@
 __pycache__/*.pyc
 syllabs/*.mp3
+.DS_Store
+package.json
+node_modules/*
+package-lock.json
+venv/*
