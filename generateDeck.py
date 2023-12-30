@@ -1,60 +1,78 @@
-import genanki
 import copy
 import csv
 import os
 
+import genanki
+
+
 def generateDeck():
     result_dict = []
 
-    with open('./data/source_examples.csv', encoding='UTF8') as csvfile:
-        reader = csv.reader(csvfile, delimiter='\t')
+    with open("./data/source_examples.csv", encoding="UTF8") as csvfile:
+        reader = csv.reader(csvfile, delimiter="\t")
         for row in reader:
-            template_dict = dict.fromkeys(['Hanzi', 'Pinyin', 'Pinyin RAW','English', 'Kanji Number', 'Alternatives', 'Sound', 'Ancient Character', 'Examples'])
+            template_dict = dict.fromkeys(
+                [
+                    "Hanzi",
+                    "Pinyin",
+                    "Pinyin RAW",
+                    "English",
+                    "Kanji Number",
+                    "Alternatives",
+                    "Sound",
+                    "Ancient Character",
+                    "Examples",
+                ]
+            )
             for i, key in enumerate(template_dict.keys()):
                 template_dict[key] = row[i]
             result_dict.append(template_dict)
-
 
     print(result_dict[0])
 
     my_model = genanki.Model(
         1087741751,
-        'Chinese (Radicals)',
+        "Chinese (Radicals)",
         fields=[
-            {'name': 'Hanzi'},
-            {'name': 'Pinyin'},
-            {'name': 'English'},
-            {'name': 'Kanji Number'},
-            {'name': 'Alternatives'},
-            {'name': 'Sound'},
-            {'name': 'Ancient Character'},
-            {'name': 'Examples'},
+            {"name": "Hanzi"},
+            {"name": "Pinyin"},
+            {"name": "English"},
+            {"name": "Kanji Number"},
+            {"name": "Alternatives"},
+            {"name": "Sound"},
+            {"name": "Ancient Character"},
+            {"name": "Examples"},
         ],
         templates=[
             {
-            'name': 'Recall',
-            'qfmt': "\n".join([
-                    "<div class=container>",
-                    "<div class=radical_number>Radical Number: {{Kanji Number}}</div>",
-                    "<div class=tags>{{Deck}} {{#Tags}} -- {{/Tags}}{{Tags}}</div>",
-                    "</div>",
-                    "<div class=chinese> {{Hanzi}}</div>",
-                    "{{#Alternatives}}<div class=note>Alternatives:  <div class=chinese>{{Alternatives}}</div></div>{{/Alternatives}}",
-                ]),
-            'afmt': "\n".join([
-                    "{{FrontSide}}",
-                    "<hr>",
-                    "<div>{{English}}</div>",
-                    "<br>",
-                    "<div class=reading>{{Pinyin}}</div>",
-                    "<div class=note>Examples:{{Examples}}</div>",
-                    "{{#Ancient Character}}<div class=note>Ancient Character:</div>{{Ancient Character}}{{/Ancient Character}}",
-                    "<br>",
-                    "{{Sound}}",
-                ]),
+                "name": "Recall",
+                "qfmt": "\n".join(
+                    [
+                        "<div class=container>",
+                        "<div class=radical_number>Radical Number: {{Kanji Number}}</div>",
+                        "<div class=tags>{{Deck}} {{#Tags}} -- {{/Tags}}{{Tags}}</div>",
+                        "</div>",
+                        "<div class=chinese> {{Hanzi}}</div>",
+                        "{{#Alternatives}}<div class=note>Alternatives:  <div class=chinese>{{Alternatives}}</div></div>{{/Alternatives}}",
+                    ]
+                ),
+                "afmt": "\n".join(
+                    [
+                        "{{FrontSide}}",
+                        "<hr>",
+                        "<div>{{English}}</div>",
+                        "<br>",
+                        "<div class=reading>{{Pinyin}}</div>",
+                        "<div class=note>Examples:{{Examples}}</div>",
+                        "{{#Ancient Character}}<div class=note>Ancient Character:</div>{{Ancient Character}}{{/Ancient Character}}",
+                        "<br>",
+                        "{{Sound}}",
+                    ]
+                ),
             },
         ],
-        css = "\n".join([
+        css="\n".join(
+            [
                 ".card {",
                 "font-family: arial;",
                 "font-size: 20px;",
@@ -69,10 +87,10 @@ def generateDeck():
                 "padding: 5px;",
                 "width: 150px;",
                 "}",
-                ".win .chinese { font-family: \"MS Mincho\", \"ＭＳ 明朝\"; }",
+                '.win .chinese { font-family: "MS Mincho", "ＭＳ 明朝"; }',
                 ".mac .chinese { }",
-                ".linux .chinese { font-family: \"Kochi Mincho\", \"東風明朝\"; }",
-                ".mobile .chinese { font-family: \"Hiragino Mincho ProN\"; }",
+                '.linux .chinese { font-family: "Kochi Mincho", "東風明朝"; }',
+                '.mobile .chinese { font-family: "Hiragino Mincho ProN"; }',
                 ".chinese { font-size: 30px;}",
                 ".reading { font-size: 20px;}",
                 ".comment {font-size: 15px; color:grey;}",
@@ -91,29 +109,34 @@ def generateDeck():
                 "  display: grid;",
                 "  grid-gap: 1rem;",
                 "  grid-template-columns:  grid-template-columns: repeat(2, 1fr);",
-                "  grid-template-areas:\"a b\"",
+                '  grid-template-areas:"a b"',
                 "}",
-                ])
-        )
+            ]
+        ),
+    )
 
-    my_deck = genanki.Deck(
-    1540858611,
-    'Chinese Radicals Deck+')
+    my_deck = genanki.Deck(1540858611, "Chinese Radicals Deck+")
     for item in result_dict:
-
         my_note = genanki.Note(
-        model = my_model,
-        fields = [
-                    item['Hanzi'], item['Pinyin'], item['English'], 
-                    item['Kanji Number'], item['Alternatives'], item['Sound'],
-                    item['Ancient Character'], item['Examples']
-                ])
+            model=my_model,
+            fields=[
+                item["Hanzi"],
+                item["Pinyin"],
+                item["English"],
+                item["Kanji Number"],
+                item["Alternatives"],
+                item["Sound"],
+                item["Ancient Character"],
+                item["Examples"],
+            ],
+        )
         my_deck.add_note(copy.deepcopy(my_note))
     my_package = genanki.Package(my_deck)
-    media_img_files = ["./media/img/"+i for i in os.listdir("./media/img")]
-    media_audio_files = ["./media/audio/"+i for i in os.listdir("./media/audio")]
+    media_img_files = ["./media/img/" + i for i in os.listdir("./media/img")]
+    media_audio_files = ["./media/audio/" + i for i in os.listdir("./media/audio")]
     my_package.media_files = media_img_files + media_audio_files
-    my_package.write_to_file('./decks/Chinese-Radicals-Deck-Plus.apkg')
+    my_package.write_to_file("./decks/Chinese-Radicals-Deck-Plus.apkg")
+
 
 if __name__ == "__main__":
     generateDeck()
