@@ -3,7 +3,7 @@ import os
 import urllib.request
 
 
-def downloadAncientImg():
+def download_ancient_img():
     with open("./data/ancient_img_url.csv", "r", encoding="UTF8") as csvfile:
         reader = csv.reader(csvfile, delimiter="\t")
         img_list = os.listdir("./media")
@@ -19,4 +19,4 @@ def downloadAncientImg():
 
 
 if __name__ == "__main__":
-    downloadAncientImg()
+    download_ancient_img()

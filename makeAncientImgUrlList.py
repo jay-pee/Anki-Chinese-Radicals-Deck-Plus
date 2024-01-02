@@ -3,14 +3,13 @@ import logging
 import re
 import urllib.request
 from socket import timeout
-from urllib.parse import quote
 
 from bs4 import BeautifulSoup
 
 
-def makeAncientImgUrlList():
+def make_ancient_img_url_list():
     character_list = []
-    with open("source.csv", "r", encoding="UTF8") as csvfile:
+    with open("data/source.csv", "r", encoding="UTF8") as csvfile:
         reader = csv.reader(
             csvfile, delimiter="\t", quotechar="|", quoting=csv.QUOTE_MINIMAL
         )
@@ -58,4 +57,4 @@ def makeAncientImgUrlList():
 
 
 if __name__ == "__main__":
-    makeAncientImgUrlList()
+    make_ancient_img_url_list()
