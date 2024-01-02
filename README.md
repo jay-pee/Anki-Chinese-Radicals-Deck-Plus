@@ -49,10 +49,7 @@ Here are some tips of what you can do:
 
 1. Download the repository
 2. Install the requirements with `pip install -r requirments.txt`
-3. Install the required node module with
-   1. `npm install hanzi` (will soon be substituted)
-   2. `npm install fast-csv`
-4. Open a shell in the repository folder and run the main script (`python main.py`)
+3. Open a shell in the repository folder and run the main script (`python main.py`)
 
 ## Contribute
 
