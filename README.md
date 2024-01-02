@@ -22,7 +22,7 @@ The Deck is automatically generated from a Python script. You can have a look at
 - Hanzi (Character)
 - Pinyin (Romanization)
 - English (Definition)
-- Kanji Radical Number
+- Kanxi Radical Number
 - Alternatives (Radicals have sometimes multiple glyphs)
 - Sound (Pronunciation from [audio-cmn](https://github.com/infinyte7/audio-cmn))
 - Ancient Character (Image from zdic.net)
@@ -60,13 +60,13 @@ If you have any suggestions how to improve the cards, you are welcome to write a
 
 ## Todos
 
-- [x] Add Kanji Radical Number
+- [x] Add Kanxi Radical Number
 - [x] Add Sound
 - [x] Get ancient scriptures
 - [x] Add colored Pinyin
 - [x] Add High Quality Audio
 - [x] Add a requirments.txt file
-- [ ] big fix wrong pinyin
+- [ ] fix wrong pinyin
 - [ ] Get examples not from a JS script
 - [ ] Stroke order with https://github.com/chanind/hanzi-writer
 - [ ] Add Pictures maybe from https://writecantonese8.files.wordpress.com/2012/10/35670726-new-chinese-radical-full.pdf or google IMG

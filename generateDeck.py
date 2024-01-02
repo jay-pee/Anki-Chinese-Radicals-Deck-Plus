@@ -5,7 +5,7 @@ import os
 import genanki
 
 
-def generateDeck():
+def generate_deck():
     result_dict = []
 
     with open("./data/source_examples.csv", encoding="UTF8") as csvfile:
@@ -17,7 +17,7 @@ def generateDeck():
                     "Pinyin",
                     "Pinyin RAW",
                     "English",
-                    "Kanji Number",
+                    "Kanxi Number",
                     "Alternatives",
                     "Sound",
                     "Ancient Character",
@@ -37,7 +37,7 @@ def generateDeck():
             {"name": "Hanzi"},
             {"name": "Pinyin"},
             {"name": "English"},
-            {"name": "Kanji Number"},
+            {"name": "Kanxi Number"},
             {"name": "Alternatives"},
             {"name": "Sound"},
             {"name": "Ancient Character"},
@@ -49,7 +49,7 @@ def generateDeck():
                 "qfmt": "\n".join(
                     [
                         "<div class=container>",
-                        "<div class=radical_number>Radical Number: {{Kanji Number}}</div>",
+                        "<div class=radical_number>Radical Number: {{Kanxi Number}}</div>",
                         "<div class=tags>{{Deck}} {{#Tags}} -- {{/Tags}}{{Tags}}</div>",
                         "</div>",
                         "<div class=chinese> {{Hanzi}}</div>",
@@ -123,7 +123,7 @@ def generateDeck():
                 item["Hanzi"],
                 item["Pinyin"],
                 item["English"],
-                item["Kanji Number"],
+                item["Kanxi Number"],
                 item["Alternatives"],
                 item["Sound"],
                 item["Ancient Character"],
@@ -139,4 +139,4 @@ def generateDeck():
 
 
 if __name__ == "__main__":
-    generateDeck()
+    generate_deck()
