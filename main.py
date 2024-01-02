@@ -1,8 +1,8 @@
-from addExamplesToSource import add_examples_to_source
-from downloadAncientImg import download_ancient_img
-from generateDeck import generate_deck
-from getRadicalsData import get_radicals_data
-from makeAncientImgUrlList import make_ancient_img_url_list
+from add_examples_to_source import add_examples_to_source
+from download_ancient_img import download_ancient_img
+from generate_deck import generate_deck
+from get_radicals_data import get_radicals_data
+from make_ancient_img_url_list import make_ancient_img_url_list
 
 MAKE_NEW_ANCIENT_IMG_LIST = False
 REDOWNLOAD_ANCIENT_IMG = False
