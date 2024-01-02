@@ -1,41 +1,65 @@
 import csv
-import json
 import os
 import re
-import urllib
-import urllib.request
-from sys import platform
 
-if platform == "darwin":
-    import certifi
-
-import pinyin
+import requests
 
 
-def getRadicalsData():
-    fields = ["string", "altMandarin", "altDefinition"]
+def __add_tone_mark(pinyin_with_number):
+    tone_marks = {
+        "a": ["ā", "á", "ǎ", "à"],
+        "e": ["ē", "é", "ě", "è"],
+        "i": ["ī", "í", "ǐ", "ì"],
+        "o": ["ō", "ó", "ǒ", "ò"],
+        "u": ["ū", "ú", "ǔ", "ù"],
+        "ü": ["ǖ", "ǘ", "ǚ", "ǜ"],
+        "A": ["Ā", "Á", "Ǎ", "À"],
+        "E": ["Ē", "É", "Ě", "È"],
+        "I": ["Ī", "Í", "Ǐ", "Ì"],
+        "O": ["Ō", "Ó", "Ǒ", "Ò"],
+        "U": ["Ū", "Ú", "Ǔ", "Ù"],
+        "Ü": ["Ǖ", "Ǘ", "Ǚ", "Ǜ"],
+    }
+
+    if pinyin_with_number[-1].isdigit():
+        tone_number = int(pinyin_with_number[-1]) - 1
+        pinyin_base = pinyin_with_number[:-1]
+
+        for vowel in tone_marks:
+            if vowel in pinyin_base:
+                return pinyin_base.replace(vowel, tone_marks[vowel][tone_number])
+
+    return pinyin_with_number  # return the original string if no tone number is found
+
+
+def get_radicals_data():
+    fields = ["string", "kMandarin", "altDefinition"]
     url_radicals = (
         f"http://ccdb.hemiola.com/characters/radicals?fields={','.join(fields)}"
     )
 
-    if platform == "darwin":
-        json_file_radicals = urllib.request.urlopen(
-            url_radicals, cafile=certifi.where()
-        ).read()
-    else:
-        json_file_radicals = urllib.request.urlopen(url_radicals).read()
+    # Sending GET request
+    response = requests.get(url_radicals, headers={"User-Agent": "XY"})
 
-    radicals = json.loads(json_file_radicals)
+    # Checking if the request was successful
+    if response.status_code == 200:
+        # Parsing the JSON response
+        radicals = response.json()
+    else:
+        print("Failed to retrieve data. Status code:", response.status_code)
+        exit(1)
+
     entries = []
 
     for i in range(1, 215):
-        same_radicals = list(filter(lambda r: int(r["radical"]) == i, radicals))
-        entry = same_radicals.pop(0)
+        same_radicals = filter(lambda r: int(r["radical"]) == i, radicals)
+        entry = next(same_radicals)
         entry["alternativs"] = ", ".join([r["string"] for r in same_radicals])
-        tone_number = re.search(r"\d", entry["altMandarin"]).group(0)
+        tone_number = re.search(r"\d", entry["kMandarin"]).group(0)
+        first_pinyin = re.search(r"^\w+\d", entry["kMandarin"]).group(0).lower()
         entry[
             "MandarinStyled"
-        ] = f"<div class=tone{tone_number}>{pinyin.get(entry['string'])}</div>"
+        ] = f"<div class=tone{tone_number}>{__add_tone_mark(first_pinyin)}</div>"
         entries.append(entry)
 
     char_with_img = [c[0] for c in os.listdir("./media/img")]
@@ -45,7 +69,10 @@ def getRadicalsData():
             csvfile, delimiter="\t", quotechar="|", quoting=csv.QUOTE_MINIMAL
         )
         for d in entries:
-            sound = f'[sound:cmn-{d["altMandarin"]}.mp3]'
+            first_pinyin = (
+                re.search(r"^\w+\d", d["kMandarin"]).group(0).lower().replace("ü", "v")
+            )
+            sound = f"[sound:cmn-{first_pinyin}.mp3]"
             if d["string"] in char_with_img:
                 ancient_img = f"<img src=\"{d['string']}_img_ancient.svg\">"
             else:
@@ -54,7 +81,7 @@ def getRadicalsData():
                 [
                     d["string"],
                     d["MandarinStyled"],
-                    d["altMandarin"],
+                    d["kMandarin"].lower(),
                     d["altDefinition"],
                     d["radical"],
                     d["alternativs"],
@@ -64,33 +91,5 @@ def getRadicalsData():
             )
 
 
-def overwriteRadicalData():
-    with open("./data/correction.csv", "r", newline="", encoding="UTF8") as csvfile:
-        reader = csv.reader(
-            csvfile, delimiter="\t", quotechar="|", quoting=csv.QUOTE_MINIMAL
-        )
-        filter_list = list(reader)
-    with open("./data/source.csv", "r", newline="", encoding="UTF8") as csvfile:
-        reader = csv.reader(
-            csvfile, delimiter="\t", quotechar="|", quoting=csv.QUOTE_MINIMAL
-        )
-        radical_list = list(reader)
-        for f in filter_list:
-            item = next(filter(lambda x: x[0] == f[0], radical_list))
-            if len(f) != 9:
-                print("error!!!")
-                continue
-            radical_index = int(item[4]) - 1
-            for i in range(8):
-                if f[i] != "":
-                    radical_list[radical_index][i] = f[i]
-    with open("./data/source.csv", "w", newline="", encoding="UTF8") as csvfile:
-        writer = csv.writer(
-            csvfile, delimiter="\t", quotechar="|", quoting=csv.QUOTE_MINIMAL
-        )
-        writer.writerows(radical_list)
-
-
 if __name__ == "__main__":
-    getRadicalsData()
-    overwriteRadicalData()
+    get_radicals_data()
