@@ -21,6 +21,7 @@ def generate_deck():
                     "Alternatives",
                     "Sound",
                     "Ancient Character",
+                    "Stroke Order",
                     "Examples",
                 ]
             )
@@ -41,6 +42,7 @@ def generate_deck():
             {"name": "Alternatives"},
             {"name": "Sound"},
             {"name": "Ancient Character"},
+            {"name": "Stroke Order"},
             {"name": "Examples"},
         ],
         templates=[
@@ -65,6 +67,7 @@ def generate_deck():
                         "<div class=reading>{{Pinyin}}</div>",
                         "<div class=note>Examples:{{Examples}}</div>",
                         "{{#Ancient Character}}<div class=note>Ancient Character:</div>{{Ancient Character}}{{/Ancient Character}}",
+                        "{{#Stroke Order}}<div class=note>Stroke Order:</div>{{Stroke Order}}{{/Stroke Order}}",
                         "<br>",
                         "{{Sound}}",
                     ]
@@ -127,6 +130,7 @@ def generate_deck():
                 item["Alternatives"],
                 item["Sound"],
                 item["Ancient Character"],
+                item["Stroke Order"],
                 item["Examples"],
             ],
         )
@@ -134,7 +138,12 @@ def generate_deck():
     my_package = genanki.Package(my_deck)
     media_img_files = ["./media/img/" + i for i in os.listdir("./media/img")]
     media_audio_files = ["./media/audio/" + i for i in os.listdir("./media/audio")]
-    my_package.media_files = media_img_files + media_audio_files
+    media_stroke_order_files = [
+        "./media/stroke_order/" + i for i in os.listdir("./media/stroke_order")
+    ]
+    my_package.media_files = (
+        media_img_files + media_audio_files + media_stroke_order_files
+    )
     my_package.write_to_file("./decks/Chinese-Radicals-Deck-Plus.apkg")
 
 

@@ -7,18 +7,18 @@ import requests
 
 def __add_tone_mark(pinyin_with_number):
     tone_marks = {
-        "a": ["ā", "á", "ǎ", "à"],
-        "e": ["ē", "é", "ě", "è"],
-        "i": ["ī", "í", "ǐ", "ì"],
-        "o": ["ō", "ó", "ǒ", "ò"],
-        "u": ["ū", "ú", "ǔ", "ù"],
-        "ü": ["ǖ", "ǘ", "ǚ", "ǜ"],
-        "A": ["Ā", "Á", "Ǎ", "À"],
-        "E": ["Ē", "É", "Ě", "È"],
-        "I": ["Ī", "Í", "Ǐ", "Ì"],
-        "O": ["Ō", "Ó", "Ǒ", "Ò"],
-        "U": ["Ū", "Ú", "Ǔ", "Ù"],
-        "Ü": ["Ǖ", "Ǘ", "Ǚ", "Ǜ"],
+        "a": ["ā", "á", "ǎ", "à", "a"],
+        "e": ["ē", "é", "ě", "è", "e"],
+        "i": ["ī", "í", "ǐ", "ì", "i"],
+        "o": ["ō", "ó", "ǒ", "ò", "o"],
+        "u": ["ū", "ú", "ǔ", "ù", "u"],
+        "ü": ["ǖ", "ǘ", "ǚ", "ǜ", "ü"],
+        "A": ["Ā", "Á", "Ǎ", "À", "A"],
+        "E": ["Ē", "É", "Ě", "È", "E"],
+        "I": ["Ī", "Í", "Ǐ", "Ì", "I"],
+        "O": ["Ō", "Ó", "Ǒ", "Ò", "O"],
+        "U": ["Ū", "Ú", "Ǔ", "Ù", "U"],
+        "Ü": ["Ǖ", "Ǘ", "Ǚ", "Ǜ", "Ü"],
     }
 
     if pinyin_with_number[-1].isdigit():
@@ -55,11 +55,14 @@ def get_radicals_data():
         same_radicals = filter(lambda r: int(r["radical"]) == i, radicals)
         entry = next(same_radicals)
         entry["alternativs"] = ", ".join([r["string"] for r in same_radicals])
-        tone_number = re.search(r"\d", entry["kMandarin"]).group(0)
-        first_pinyin = re.search(r"^\w+\d", entry["kMandarin"]).group(0).lower()
-        entry[
-            "MandarinStyled"
-        ] = f"<div class=tone{tone_number}>{__add_tone_mark(first_pinyin)}</div>"
+        pinyin_iter = re.finditer(r"\w+\d", entry["kMandarin"])
+        entry["MandarinStyled"] = ""
+        for pinyin in pinyin_iter:
+            tone_number = re.search(r"\d", pinyin.group(0)).group(0)
+            entry[
+                "MandarinStyled"
+            ] += f"<div class=tone{tone_number}>{__add_tone_mark(pinyin.group().lower())}</div>, "
+        entry["MandarinStyled"] = entry["MandarinStyled"][:-2]
         entries.append(entry)
 
     char_with_img = [c[0] for c in os.listdir("./media/img")]
@@ -77,6 +80,8 @@ def get_radicals_data():
                 ancient_img = f"<img src=\"{d['string']}_img_ancient.svg\">"
             else:
                 ancient_img = ""
+
+            stroke_order = f"<img src=\"{d['string']}_stroke_order.svg\">"
             writer.writerow(
                 [
                     d["string"],
@@ -87,6 +92,7 @@ def get_radicals_data():
                     d["alternativs"],
                     sound,
                     ancient_img,
+                    stroke_order,
                 ]
             )
 
